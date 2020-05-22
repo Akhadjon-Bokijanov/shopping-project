@@ -42,6 +42,7 @@ class App extends React.Component {
         </Switch>
       </div>
     );
+  }
 }
 
 export default App;
