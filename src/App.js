@@ -5,7 +5,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import { Switch, Route } from 'react-router-dom';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
-import SignInSignUp from './pages/sign-in/sign-in.component';
+import SignInSignUp from './pages/sign-in-sign-out/sign-in-sign-out.component';
 import {auth} from '../src/firebase/firebase.utils';
 
 
