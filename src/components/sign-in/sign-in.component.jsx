@@ -67,20 +67,13 @@ class SignIn extends React.Component
                         onChange={this.handleChange}
                         required
                     />
-<<<<<<< HEAD
                     <div className="buttons">
                         <CustomButton type="submit">Sign in</CustomButton>
-                        <CustomButton isGoogleSignIn onClick={ signInWithGoogle }>
+                        <CustomButton onClick={ signInWithGoogle }>
                             Sign in with Google
                         </CustomButton>
                     </div>
-=======
-                    <CustomButton type="submit">Sign in</CustomButton>
-                <CustomButton onClick={ signInWithGoogle }>
-                    Sign in with Google
-                </CustomButton>
->>>>>>> parent of e92bc0e... Sign out is implemented
-                </form>
+                    </form>
                 
             </div>
         )
