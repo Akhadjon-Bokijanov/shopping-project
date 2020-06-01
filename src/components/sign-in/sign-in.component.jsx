@@ -82,8 +82,8 @@ class SignIn extends React.Component
                             Sign in with Google
                         </CustomButton>
                         <CustomButton isGoogleSignIn onClick={signInWithGitHub}>
-                        Sign in with GitHub
-                    </CustomButton>
+                            Sign in with GitHub
+                        </CustomButton>
                     </div>
                     </form>
                     

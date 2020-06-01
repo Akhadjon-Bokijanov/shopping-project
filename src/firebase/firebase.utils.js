@@ -23,7 +23,7 @@ export const createUserProfileDocument = async(userAuth, additionalData) =>{
 
     const snapShot = await userRef.get();
 
-    if(snapShot.exists)
+    if(!snapShot.exists)
     {
       const {displayName, email} = userAuth;
 
@@ -59,6 +59,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 const provider1 = new firebase.auth.GithubAuthProvider();
 
 provider.setCustomParameters({prompt: 'select_account'});
+provider1.setCustomParameters({prompt: 'select_account'});
 
 export const signInWithGoogle = ()=> auth.signInWithPopup(provider);
 export const signInWithGitHub = ()=> auth.signInWithPopup(provider1);
