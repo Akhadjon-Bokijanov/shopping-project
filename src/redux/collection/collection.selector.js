@@ -10,10 +10,20 @@ export const selectCollectionItems = createSelector(
 
 export const selectCollectionsForPreview = createSelector(
     [selectCollectionItems],
-    collections => Object.keys(collections).map(key => collections[key])
+    collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 )
 
 export const selectCollectionId = (collectionUrlParam)=>createSelector(
     [selectCollectionItems],
-    collections => collections[collectionUrlParam]
+    collections => collections ? collections[collectionUrlParam] : null
+)
+
+export const selectIsCollectionFetching = createSelector(
+    [selectCollection],
+    collection=>collection.isFetching
+)
+
+export const selectIsCollectionLoaded = createSelector(
+    [selectCollection],
+    collections=> !!collections.collection
 )

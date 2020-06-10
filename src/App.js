@@ -20,7 +20,7 @@ class App extends React.Component {
 
   componentDidMount()
   {
-    const {setCurrentUser} = this.props;
+    const {setCurrentUser,} = this.props;
     this.unSubscribeAuth = auth.onAuthStateChanged(async userAuth => {
         
       if(userAuth)
@@ -35,8 +35,9 @@ class App extends React.Component {
             })
         })
       }
-      else
-      {setCurrentUser(userAuth)}
+      
+      setCurrentUser(userAuth)
+      //console.log(collectionItemsArray);
     })
   }
 
@@ -65,11 +66,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 })
 
 const mapDispatchToProps = (dispatch)=>({
-  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  setCurrentUser: user => dispatch(setCurrentUser(user)), 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
