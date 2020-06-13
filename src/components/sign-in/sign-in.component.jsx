@@ -1,9 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {googleSignInStart, githubSignInStart, emailSignInStart} from '../../redux/user/user.actions';
 import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../customButton/customButton.component';
-
-import {signInWithGoogle, signInWithGitHub, auth} from '../../firebase/firebase.utils';
 
 class SignIn extends React.Component
 {
@@ -21,23 +21,10 @@ class SignIn extends React.Component
     
     handleSubmit = async (event) => {
         event.preventDefault();
-
+        const {emailSignInStart} = this.props
         const {email, password} = this.state;
-
-        try{
-            await auth.signInWithEmailAndPassword(email, password)
-            this.setState({
-                email: "",
-                password: ""
-            })
-        }
-        catch(error)
-        {
-            console.error("Sign in error: ", error);
-            
-        }
-
         
+        emailSignInStart(email, password);
     }
 
     handleChange = (event) =>
@@ -54,6 +41,8 @@ class SignIn extends React.Component
 
     render()
     {
+        const {googleSignInStart, githubSignInStart} = this.props
+
         return (
             <div className="sign-in">
                 <h2>I already have an account</h2>
@@ -78,10 +67,10 @@ class SignIn extends React.Component
                     />
                     <div className="buttons">
                         <CustomButton type="submit">Sign in</CustomButton>
-                        <CustomButton isGoogleSignIn onClick={signInWithGoogle}>
+                        <CustomButton isGoogleSignIn type="button" onClick={googleSignInStart}>
                             Sign in with Google
                         </CustomButton>
-                        <CustomButton isGoogleSignIn onClick={signInWithGitHub}>
+                        <CustomButton isGoogleSignIn type="button" onClick={githubSignInStart}>
                             Sign in with GitHub
                         </CustomButton>
                     </div>
@@ -92,4 +81,10 @@ class SignIn extends React.Component
     }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch)=>({
+    googleSignInStart: ()=> dispatch(googleSignInStart()),
+    githubSignInStart: ()=> dispatch(githubSignInStart()),
+    emailSignInStart: (email, password)=>dispatch(emailSignInStart({email, password}))
+})
+
+export default connect(null, mapDispatchToProps)(SignIn);

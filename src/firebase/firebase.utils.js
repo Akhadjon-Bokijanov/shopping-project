@@ -50,6 +50,14 @@ export const createUserProfileDocument = async(userAuth, additionalData) =>{
     return userRef;
 }
 
+export const getCurrentUser = ()=>{
+  return new Promise((resolve, reject)=>{
+    const unSubscribe = auth.onAuthStateChanged(userAuth =>{
+      unSubscribe();
+      resolve(userAuth);
+    }, reject)
+  })
+}
 
 export const convertCollectionSnapShotToMap = (collections)=>{
   const transfromedCollection = collections.docs.map(doc => {
@@ -86,13 +94,13 @@ export const AddCollectionAndDocuments = async (collectionKey, objectsToAdd)=>{
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-const provider1 = new firebase.auth.GithubAuthProvider();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export const githubProvider = new firebase.auth.GithubAuthProvider();
 
-provider.setCustomParameters({prompt: 'select_account'});
-provider1.setCustomParameters({prompt: 'select_account'});
+googleProvider.setCustomParameters({prompt: 'select_account'});
+githubProvider.setCustomParameters({prompt: 'select_account'});
 
-export const signInWithGoogle = ()=> auth.signInWithPopup(provider);
-export const signInWithGitHub = ()=> auth.signInWithPopup(provider1);
+export const signInWithGoogle = ()=> auth.signInWithPopup(googleProvider);
+export const signInWithGitHub = ()=> auth.signInWithPopup(githubProvider);
 
 export default firebase;
