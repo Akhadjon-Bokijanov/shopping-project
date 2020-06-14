@@ -4,15 +4,15 @@ import {firestore, convertCollectionSnapShotToMap} from "../../firebase/firebase
 import { fetchCollectionsSuccess, fetchCollectionsError } from './collection.action'
 
 export function* fetchCollectionsAscy(){
-    
     try {
-        const collectionRef = firestore.collection('collections');
+        const collectionRef = yield firestore.collection('collections');
         const snapShop = yield collectionRef.get();
         const collectionsMap = yield call(convertCollectionSnapShotToMap, snapShop);
-
+        
         yield put(fetchCollectionsSuccess(collectionsMap))
     }
     catch(error){
+        console.log("I am fired in colection saga");
         yield put(fetchCollectionsError(error))
     }
 
