@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\components",
+    "\\client\\src\\components\\card-icon",
+    "\\client\\src\\components\\shopping-cart-drop-down",
+    "\\client\\src\\redux",
+    "\\client\\src\\redux\\cart",
+    "\\client\\src\\redux\\collection",
+    "\\client\\src\\redux\\directory"
+  ],
+  "SelectedNode": "\\client\\src\\components\\shopping-cart-drop-down\\shopping-cart-drop-down.component.jsx",
+  "PreviewInSolutionExplorer": false
+}
